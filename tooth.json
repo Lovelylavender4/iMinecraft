@@ -1,11 +1,11 @@
 {
     "format_version": 2,
-    "tooth": "my-plugin",
+    "tooth": "github.com/Lovelylavender4/Minecraft",
     "version": "0.0.0",
     "info": {
-        "name": "My Plugin Name",
-        "description": "My Plugin Description",
-        "author": "My Name",
+        "name": "Minecraft",
+        "description": "A Minecraft BDS Plugin for Modifying Features and World-Related Generation.",
+        "author": "Lovelylavender4",
         "tags": [
             "levilamina",
             "plugin"
@@ -13,13 +13,13 @@
     },
     "asset_url": "My Asset Url",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "My LeviLamina Dependency Version"
+        "github.com/LiteLDev/LeviLamina": "0.12.x"
     },
     "files": {
         "place": [
             {
-                "src": "my-plugin/*",
-                "dest": "plugins/my-plugin/"
+                "src": "Minecraft/*",
+                "dest": "plugins/Minecraft/"
             }
         ]
     }

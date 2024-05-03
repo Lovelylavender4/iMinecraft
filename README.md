@@ -1,35 +1,40 @@
-# LeviLamina Plugin Template
+# Minecraft
 
-A LeviLamina plugin template
+![Minecraft](https://socialify.git.ci/Lovelylavender4/Minecraft/image?description=1&font=Raleway&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)
 
-This plugin is a template for developing LeviLamina plugins.
+![English](https://img.shields.io/badge/English-inactive?style=for-the-badge)
+
+`Minecraft` is a Minecraft BDS plugin for modifying features and world generation related content.
 
 ## Install
 
-Generate a new repository from this template.
-
 ## Usage
 
-Before using this plugin template, make sure that you have installed XMake and a Minecraft Bedrock Server with LeviLamina.
+## Star History
 
-1. Clone the new repository into a local folder.
+[![Star History Chart](https://api.star-history.com/svg?repos=Lovelylavender4/Minecraft&type=Date)](https://star-history.com/#Lovelylavender4/Minecraft&Date)
 
-1. Change the plugin name and the expected LeviLamina version in `xmake.lua`.
+## ⭐Contributing⭐
 
-1. Add your code.
+> [!IMPORTANT]
+>
+> ⭐You can ``contribute`` to the `Minecraft` project in the following ways⭐
+>
+> - ⭐ Add new functionality by pulling request contribution code
+> - ⭐ Help me modify or optimize documents
+> - ⭐ Feedback on [`GitHub Issues`](https://github.com/Lovelylavender4/Minecraft/issues) for problems, suggestions, etc.
+> - ⭐ Help us promote `Minecraft` and support my development!
+>
+> ⭐Very much looking forward to and welcoming your contribution!⭐
 
-1. Run `xmake repo -u` in the root of the repository.
+`Minecraft` follows the [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
-1. Run `xmake` to build the plugin.
+## Contributors
 
-Now the build is complete at `bin/`.
+This project exists thanks to all the people who contribute.
 
-## Contributing
-
-Ask questions by creating an issue.
-
-PRs accepted.
+![Contributors](https://contrib.rocks/image?repo=Lovelylavender4/Minecraft)
 
 ## License
 
-CC0-1.0 © LiteLDev
+CC0-1.0 © Lovelylavender4

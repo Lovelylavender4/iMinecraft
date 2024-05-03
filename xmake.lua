@@ -1,17 +1,26 @@
 add_rules("mode.debug", "mode.release")
+set_allowedarchs("windows|x64")
+set_defaultarchs("windows|x64")
 
 add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
+add_repositories("MiF-repo https://github.com/MiracleForest/xmake-repo.git")
 
--- add_requires("levilamina x.x.x") for a specific version
--- add_requires("levilamina develop") to use develop version
--- please note that you should add bdslibrary yourself if using dev version
+-- Dependencies from xmake-repo.
+add_requires("fmt")
+add_requires("magic_enum")
+add_requires("nlohmann_json")
+
+-- Dependencies from liteldev-repo.
 add_requires("levilamina")
+
+-- Dependencies from MiF-repo.
+add_requires("iFamily")
 
 if not has_config("vs_runtime") then
     set_runtimes("MD")
 end
 
-target("my-plugin") -- Change this to your plugin name.
+target("Minecraft")
     add_cxflags(
         "/EHa",
         "/utf-8",
@@ -24,15 +33,26 @@ target("my-plugin") -- Change this to your plugin name.
         "/w45204"
     )
     add_defines("NOMINMAX", "UNICODE")
+    add_headerfiles("src/**.h")
     add_files("src/**.cpp")
     add_includedirs("src")
-    add_packages("levilamina")
+    add_packages(
+		"levilamina",
+		"fmt",
+        "magic_enum",
+        "nlohmann_json",
+        "iFamily"
+    )
     add_shflags("/DELAYLOAD:bedrock_server.dll") -- To use symbols provided by SymbolProvider.
     set_exceptions("none") -- To avoid conflicts with /EHa.
     set_kind("shared")
     set_languages("c++20")
     set_symbols("debug")
 
+    if is_mode("debug") then
+        add_defines("MINECRAFT_DEBUG")
+    end
+    
     after_build(function (target)
         local plugin_packer = import("scripts.after_build")
 

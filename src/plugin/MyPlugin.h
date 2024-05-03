@@ -2,14 +2,19 @@
 
 #include "ll/api/plugin/NativePlugin.h"
 
-namespace my_plugin {
+namespace Minecraft
+{
 
-class MyPlugin {
+class MyPlugin
+{
 
 public:
     static MyPlugin& getInstance();
 
-    MyPlugin(ll::plugin::NativePlugin& self) : mSelf(self) {}
+    MyPlugin(ll::plugin::NativePlugin& self)
+        : mSelf(self)
+    {
+    }
 
     [[nodiscard]] ll::plugin::NativePlugin& getSelf() const { return mSelf; }
 
@@ -30,4 +35,4 @@ private:
     ll::plugin::NativePlugin& mSelf;
 };
 
-} // namespace my_plugin
+} // namespace Minecraft
