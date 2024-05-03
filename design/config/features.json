@@ -1,0 +1,17 @@
+{
+  "features": {
+    "structures": {
+      "village": {
+        "enable": true,
+        "town_spacing": -1,
+        "min_town_separation": -1,
+        "specified_chunk_position": [
+          {
+            "spawn": true,
+            "position": [ 0, 0 ]
+          }
+        ]
+      }
+    }
+  }
+}

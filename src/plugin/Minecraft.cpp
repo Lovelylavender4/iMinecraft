@@ -1,30 +1,36 @@
-#include "plugin/MyPlugin.h"
+#include "plugin/Minecraft.h"
 #include "ll/api/plugin/NativePlugin.h"
 #include "ll/api/plugin/RegisterHelper.h"
+#include "plugin/config/ConfigManager.h"
 #include <memory>
 
 namespace Minecraft
 {
 
-static std::unique_ptr<MyPlugin> instance;
+static std::unique_ptr<MinecraftPlugin> instance;
 
-MyPlugin& MyPlugin::getInstance() { return *instance; }
+MinecraftPlugin& MinecraftPlugin::getInstance() { return *instance; }
 
-bool MyPlugin::load()
+MinecraftPlugin::MinecraftPlugin(ll::plugin::NativePlugin& pSelf)
+    : mSelf(pSelf)
+{
+}
+
+bool MinecraftPlugin::load()
 {
     getSelf().getLogger().info("Loading...");
     // Code for loading the plugin goes here.
     return true;
 }
 
-bool MyPlugin::enable()
+bool MinecraftPlugin::enable()
 {
     getSelf().getLogger().info("Enabling...");
     // Code for enabling the plugin goes here.
     return true;
 }
 
-bool MyPlugin::disable()
+bool MinecraftPlugin::disable()
 {
     getSelf().getLogger().info("Disabling...");
     // Code for disabling the plugin goes here.
@@ -33,4 +39,4 @@ bool MyPlugin::disable()
 
 } // namespace Minecraft
 
-LL_REGISTER_PLUGIN(Minecraft::MyPlugin, Minecraft::instance);
+LL_REGISTER_PLUGIN(Minecraft::MinecraftPlugin, Minecraft::instance);

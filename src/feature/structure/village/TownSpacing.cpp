@@ -1,0 +1,1 @@
+#include "feature/structure/village/MinecraftVillage.h"

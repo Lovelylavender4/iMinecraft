@@ -1,0 +1,10 @@
+{
+  "format_version": 0,
+  "enable": true,
+  "debug": false,
+  "enable_log": true,
+  "path": {
+    "overall_config": "config/config.json",
+    "features_config": "config/features.json"
+  }
+}
