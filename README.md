@@ -37,4 +37,6 @@ This project exists thanks to all the people who contribute.
 
 ## License
 
-CC0-1.0 © Lovelylavender4
+Copyright © 2024 Lovelylavender4, All rights reserved.
+
+This project is licensed under the LGPL-3.0 License - see the [COPYING](COPYING) and [COPYING.LESSER](COPYING.LESSER) files for details.
