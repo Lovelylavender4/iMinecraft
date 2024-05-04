@@ -11,6 +11,9 @@ using namespace MiracleForest;
 
 class ConfigManager
 {
+    std::string mOverallConfigFilePath;
+    std::string mFeaturesConfigFilePath;
+
 public:
     struct OverallConfig
     {
@@ -23,7 +26,8 @@ public:
             std::string mOverallConfig  = "";
             std::string mFeaturesConfig = "";
         } mPath;
-    };
+    } mOverallConfig;
+
     struct FeaturesConfig
     {
         struct Features
@@ -46,35 +50,17 @@ public:
                 } mVillage;
             } mStructures;
         } mFeatures;
-    };
+    } mFeaturesConfig;
 
-    class OverallConfigManager
-    {
-    private:
-        std::string mOverallConfigFilePath;
-
-    public:
-        OverallConfigManager(std::string pOverallConfigFilePath);
-
-    public:
-        OverallConfig mOverallConfig;
-
-    public:
-        bool load();
-        bool save();
-    };
 
 private:
-    OverallConfigManager mOverallConfigManager;
-
 public:
     ~ConfigManager();
 
-    static OverallConfigManager& overallConfigManagerInstance();
-    static ConfigManager&        instance();
+    static ConfigManager& instance();
 
 private:
-    ConfigManager();
+    ConfigManager(std::string pOverallConfigFilePath);
 
     ConfigManager(const ConfigManager&)            = delete;
     ConfigManager(ConfigManager&&)                 = delete;

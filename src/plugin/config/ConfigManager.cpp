@@ -6,49 +6,44 @@ namespace Minecraft
 {
 using json = nlohmann::json;
 
-ConfigManager::ConfigManager()
-    : mOverallConfigManager(PLUGIN_OVERALL_CONFIG_FILE)
+ConfigManager::ConfigManager(std::string pOverallConfigFilePath)
+    : mOverallConfigFilePath(pOverallConfigFilePath)
 {
 }
 
-bool ConfigManager::load() { return overallConfigManagerInstance().load(); }
+bool ConfigManager::load()
+{
+    std::fstream   overallConfigFile(mOverallConfigFilePath);
+    nlohmann::json overallConfigFileData;
+    overallConfigFile >> overallConfigFileData;
+    mOverallConfig = overallConfigFileData.get<OverallConfig>();
 
-bool ConfigManager::save() { return overallConfigManagerInstance().save(); }
+    std::fstream   featuresConfigFile(mOverallConfig.mPath.mFeaturesConfig);
+    nlohmann::json featuresConfigConfigFileData;
+    featuresConfigFile >> featuresConfigConfigFileData;
+    mFeaturesConfig = featuresConfigConfigFileData.get<FeaturesConfig>();
+
+    return true;
+}
+
+bool ConfigManager::save()
+{
+    std::fstream   overallConfigFile(mOverallConfigFilePath, std::ios::out | std::ios::trunc);
+    nlohmann::json overallConfigFileData = mOverallConfig;
+    overallConfigFile << overallConfigFileData.dump(4);
+
+    std::fstream   featuresConfigFile(mOverallConfig.mPath.mFeaturesConfig, std::ios::out | std::ios::trunc);
+    nlohmann::json featuresConfigConfigFileData = mFeaturesConfig;
+    featuresConfigFile << featuresConfigConfigFileData.dump(4);
+    return true;
+}
 
 ConfigManager::~ConfigManager() {}
 
-ConfigManager::OverallConfigManager& ConfigManager::overallConfigManagerInstance()
-{
-    return instance().mOverallConfigManager;
-}
-
 ConfigManager& ConfigManager::instance()
 {
-    static ConfigManager configManagerInstance;
+    static ConfigManager configManagerInstance(PLUGIN_OVERALL_CONFIG_FILE);
     return configManagerInstance;
-}
-
-ConfigManager::OverallConfigManager::OverallConfigManager(std::string pOverallConfigFilePath)
-    : mOverallConfigFilePath(pOverallConfigFilePath)
-    , mOverallConfig()
-{
-}
-
-bool ConfigManager::OverallConfigManager::load()
-{
-    std::fstream   overallConfigFile(mOverallConfigFilePath);
-    nlohmann::json data;
-    overallConfigFile >> data;
-    mOverallConfig = data.get<OverallConfig>();
-    return true;
-}
-
-bool ConfigManager::OverallConfigManager::save()
-{
-    std::fstream   overallConfigFile(mOverallConfigFilePath, std::ios::out | std::ios::trunc);
-    nlohmann::json data = mOverallConfig;
-    overallConfigFile << data.dump(4);
-    return true;
 }
 
 } // namespace Minecraft
