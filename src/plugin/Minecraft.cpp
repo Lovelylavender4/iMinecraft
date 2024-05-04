@@ -18,22 +18,24 @@ MinecraftPlugin::MinecraftPlugin(ll::plugin::NativePlugin& pSelf)
 
 bool MinecraftPlugin::load()
 {
-    getSelf().getLogger().info("Loading...");
-    // Code for loading the plugin goes here.
+    getSelf().getLogger().info("Loading config...");
+    ConfigManager::instance().load();
+    getSelf().getLogger().info("Done.");
     return true;
 }
 
 bool MinecraftPlugin::enable()
 {
-    getSelf().getLogger().info("Enabling...");
-    // Code for enabling the plugin goes here.
+    getSelf().getLogger().info("Starting...");
+    getSelf().getLogger().info("Done.");
     return true;
 }
 
 bool MinecraftPlugin::disable()
 {
-    getSelf().getLogger().info("Disabling...");
-    // Code for disabling the plugin goes here.
+    getSelf().getLogger().info("Saving config...");
+    ConfigManager::instance().save();
+    getSelf().getLogger().info("Done.");
     return true;
 }
 
