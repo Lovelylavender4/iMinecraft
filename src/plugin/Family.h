@@ -10,4 +10,4 @@
 #define PLUGIN_WEBSITE             "https://github.com/Lovelylavender4/Minecraft"
 #define PLUGIN_PATH_PREFIX         LL_PLUGINS_ROOT_DIR PLUGIN_NAME SLASH
 #define PLUGIN_WORK_DIR            PLUGIN_PATH_PREFIX
-#define PLUGIN_OVERALL_CONFIG_FILE PLUGIN_PATH_PREFIX "config/config.json"
+#define PLUGIN_OVERALL_CONFIG_FILE "config/config.json"

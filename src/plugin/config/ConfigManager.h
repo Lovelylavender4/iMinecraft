@@ -18,13 +18,13 @@ public:
     struct OverallConfig
     {
         uint mFormatVersion = 0;
-        bool mEnable        = false;
+        bool mEnable        = true;
         bool mDebug         = false;
-        bool mEnableLog     = false;
+        bool mEnableLog     = true;
         struct Path
         {
-            std::string mOverallConfig  = "";
-            std::string mFeaturesConfig = "";
+            std::string mOverallConfig  = "config/config.json";
+            std::string mFeaturesConfig = "config/features.json";
         } mPath;
     } mOverallConfig;
 
@@ -36,15 +36,15 @@ public:
             {
                 struct Village
                 {
-                    bool mSpawn             = false;
-                    bool mEnable            = false;
+                    bool mSpawn             = true;
+                    bool mEnable            = true;
                     int  mTownSpacing       = -1;
                     int  mMinTownSeparation = -1;
                     struct SpecifiedChunkPosition
                     {
-                        bool     mEnable = false;
-                        bool     mSpawn  = false;
-                        ChunkPos mPosition {};
+                        bool     mEnable = true;
+                        bool     mSpawn  = true;
+                        ChunkPos mPosition { 0, 0 };
                     };
                     std::vector<SpecifiedChunkPosition> mSpecifiedChunkPosition {};
                 } mVillage;
@@ -69,6 +69,10 @@ private:
 public:
     bool load();
     bool save();
+
+private:
+    bool createOverallConfigFile();
+    bool createFeaturesConfigFile();
 }; // class ConfigManager
 
 } // namespace Minecraft

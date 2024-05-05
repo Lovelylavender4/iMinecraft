@@ -19,7 +19,11 @@ MinecraftPlugin::MinecraftPlugin(ll::plugin::NativePlugin& pSelf)
 bool MinecraftPlugin::load()
 {
     getSelf().getLogger().info("Loading config...");
-    ConfigManager::instance().load();
+    if (!ConfigManager::instance().load())
+    {
+        getSelf().getLogger().error("Failed to load config.");
+        return false;
+    }
     getSelf().getLogger().info("Done.");
     return true;
 }

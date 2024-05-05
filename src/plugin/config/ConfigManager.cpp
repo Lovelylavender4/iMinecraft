@@ -1,5 +1,7 @@
 #include "plugin/config/ConfigManager.h"
-#include "plugin/family.h"
+#include "plugin/Family.h"
+#include "plugin/Minecraft.h"
+#include <filesystem>
 #include <fstream>
 
 namespace Minecraft
@@ -13,28 +15,103 @@ ConfigManager::ConfigManager(std::string pOverallConfigFilePath)
 
 bool ConfigManager::load()
 {
-    std::fstream   overallConfigFile(mOverallConfigFilePath);
-    nlohmann::json overallConfigFileData;
-    overallConfigFile >> overallConfigFileData;
-    mOverallConfig = overallConfigFileData.get<OverallConfig>();
-
-    std::fstream   featuresConfigFile(mOverallConfig.mPath.mFeaturesConfig);
-    nlohmann::json featuresConfigConfigFileData;
-    featuresConfigFile >> featuresConfigConfigFileData;
-    mFeaturesConfig = featuresConfigConfigFileData.get<FeaturesConfig>();
-
+    if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfigFilePath))
+    {
+        MinecraftPlugin::getInstance().getSelf().getLogger().warn(
+            "Unable to find configuration file: {}, ready to create this configuration!",
+            mOverallConfigFilePath
+        );
+        if (!createOverallConfigFile())
+        {
+            MinecraftPlugin::getInstance().getSelf().getLogger().error(
+                "Failed to create configuration file: {}",
+                PLUGIN_WORK_DIR + mOverallConfigFilePath
+            );
+            return false;
+        }
+        MinecraftPlugin::getInstance().getSelf().getLogger().info(
+            "Successfully created configuration file: {}",
+            mOverallConfigFilePath
+        );
+    }
+    else
+    {
+        std::fstream   overallConfigFile(PLUGIN_WORK_DIR + mOverallConfigFilePath);
+        nlohmann::json overallConfigFileData;
+        overallConfigFile >> overallConfigFileData;
+        mOverallConfig = overallConfigFileData.get<OverallConfig>();
+        overallConfigFile.close();
+    }
+    if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig))
+    {
+        MinecraftPlugin::getInstance().getSelf().getLogger().warn(
+            "Unable to find configuration file: {}, ready to create this configuration!",
+            mOverallConfig.mPath.mFeaturesConfig
+        );
+        if (!createFeaturesConfigFile())
+        {
+            MinecraftPlugin::getInstance().getSelf().getLogger().error(
+                "Failed to create configuration file: {}",
+                mOverallConfig.mPath.mFeaturesConfig
+            );
+            return false;
+        }
+        MinecraftPlugin::getInstance().getSelf().getLogger().info(
+            "Successfully created configuration file: {}",
+            mOverallConfig.mPath.mFeaturesConfig
+        );
+    }
+    else
+    {
+        std::fstream   featuresConfigFile(PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig);
+        nlohmann::json featuresConfigConfigFileData;
+        featuresConfigFile >> featuresConfigConfigFileData;
+        mFeaturesConfig = featuresConfigConfigFileData.get<FeaturesConfig>();
+        featuresConfigFile.close();
+    }
     return true;
 }
 
 bool ConfigManager::save()
 {
-    std::fstream   overallConfigFile(mOverallConfigFilePath, std::ios::out | std::ios::trunc);
+    std::fstream overallConfigFile(PLUGIN_WORK_DIR + mOverallConfigFilePath, std::ios::out | std::ios::trunc);
     nlohmann::json overallConfigFileData = mOverallConfig;
     overallConfigFile << overallConfigFileData.dump(4);
 
-    std::fstream   featuresConfigFile(mOverallConfig.mPath.mFeaturesConfig, std::ios::out | std::ios::trunc);
+    std::fstream featuresConfigFile(
+        PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig,
+        std::ios::out | std::ios::trunc
+    );
     nlohmann::json featuresConfigConfigFileData = mFeaturesConfig;
     featuresConfigFile << featuresConfigConfigFileData.dump(4);
+    return true;
+}
+
+bool ConfigManager::createOverallConfigFile()
+{
+    std::filesystem::path currentDir = std::filesystem::current_path();
+    std::filesystem::path filePath   = currentDir / (PLUGIN_WORK_DIR + mOverallConfigFilePath);
+    std::filesystem::path parentPath = filePath.parent_path();
+    std::filesystem::create_directories(parentPath);
+
+    std::ofstream file(filePath);
+    if (!file.is_open()) { return false; }
+    file << nlohmann::json(mOverallConfig).dump(4);
+    file.close();
+    return true;
+}
+
+bool ConfigManager::createFeaturesConfigFile()
+{
+    std::filesystem::path currentDir = std::filesystem::current_path();
+    std::filesystem::path filePath   = currentDir / (PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig);
+    std::filesystem::path parentPath = filePath.parent_path();
+    std::filesystem::create_directories(parentPath);
+
+    std::ofstream file(filePath);
+    if (!file.is_open()) { return false; }
+    file << nlohmann::json(mFeaturesConfig).dump(4);
+    file.close();
     return true;
 }
 
