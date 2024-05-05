@@ -1,4 +1,5 @@
 #include "plugin/Minecraft.h"
+#include "feature/structure/village/MinecraftVillage.h"
 #include "ll/api/plugin/NativePlugin.h"
 #include "ll/api/plugin/RegisterHelper.h"
 #include "plugin/config/ConfigManager.h"
@@ -31,6 +32,7 @@ bool MinecraftPlugin::load()
 bool MinecraftPlugin::enable()
 {
     getSelf().getLogger().info("Starting...");
+    MinecraftVillage::process();
     getSelf().getLogger().info("Done.");
     return true;
 }

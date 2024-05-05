@@ -40,13 +40,13 @@ public:
                     bool mEnable            = true;
                     int  mTownSpacing       = -1;
                     int  mMinTownSeparation = -1;
-                    struct SpecifiedChunkPosition
+                    struct SpecifiedChunk
                     {
                         bool     mEnable = true;
                         bool     mSpawn  = true;
                         ChunkPos mPosition { 0, 0 };
                     };
-                    std::vector<SpecifiedChunkPosition> mSpecifiedChunkPosition {};
+                    std::vector<SpecifiedChunk> mSpecifiedChunk {};
                 } mVillage;
             } mStructures;
         } mFeatures;
@@ -79,10 +79,10 @@ private:
 
 namespace nlohmann
 {
-using OverallConfig                 = Minecraft::ConfigManager::OverallConfig;
-using FeaturesConfig                = Minecraft::ConfigManager::FeaturesConfig;
-using FeaturesStructures            = FeaturesConfig::Features::Structures;
-using VillageSpecifiedChunkPosition = FeaturesConfig::Features::Structures::Village::SpecifiedChunkPosition;
+using OverallConfig         = Minecraft::ConfigManager::OverallConfig;
+using FeaturesConfig        = Minecraft::ConfigManager::FeaturesConfig;
+using FeaturesStructures    = FeaturesConfig::Features::Structures;
+using VillageSpecifiedChunk = FeaturesConfig::Features::Structures::Village::SpecifiedChunk;
 
 static void to_json(json& pJson, const OverallConfig::Path& pOverallConfigPath);
 static void from_json(const json& pJson, OverallConfig::Path& pOverallConfigPath);
@@ -102,8 +102,8 @@ static void from_json(const json& pJson, FeaturesStructures& pStructures);
 static void to_json(json& pJson, const FeaturesStructures::Village& pVillage);
 static void from_json(const json& pJson, FeaturesStructures::Village& pVillage);
 
-static void to_json(json& pJson, const VillageSpecifiedChunkPosition& pSpecifiedChunkPosition);
-static void from_json(const json& pJson, VillageSpecifiedChunkPosition& pSpecifiedChunkPosition);
+static void to_json(json& pJson, const VillageSpecifiedChunk& pSpecifiedChunkPosition);
+static void from_json(const json& pJson, VillageSpecifiedChunk& pSpecifiedChunkPosition);
 
 static void to_json(json& pJson, const ChunkPos& pChunkPos);
 static void from_json(const json& pJson, ChunkPos& pChunkPos);

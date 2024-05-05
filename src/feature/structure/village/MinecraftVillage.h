@@ -7,11 +7,11 @@ namespace Minecraft
 class MinecraftVillage
 {
 public:
-    MinecraftVillage();
-    ~MinecraftVillage();
+    static void process();
 
-public:
-    void process();
+private:
+    static void townSpacingProcess();
+    static void specifiedPositionProcess();
 }; // class MinecraftVillage
 
 } // namespace Minecraft

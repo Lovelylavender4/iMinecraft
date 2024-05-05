@@ -3,11 +3,13 @@
     "structures": {
       "village": {
         "enable": true,
+        "spawn": true,
         "town_spacing": -1,
         "min_town_separation": -1,
-        "specified_chunk_position": [
+        "specified_chunk": [
           {
             "spawn": true,
+            "enable": true,
             "position": [ 0, 0 ]
           }
         ]

@@ -158,60 +158,59 @@ static void from_json(const json& pJson, OverallConfig& pOverallConfig)
 
 static void to_json(json& pJson, const FeaturesConfig& pFeaturesConfig)
 {
-    pJson["Features"] = pFeaturesConfig.mFeatures;
+    pJson["features"] = pFeaturesConfig.mFeatures;
 }
 static void from_json(const json& pJson, FeaturesConfig& pFeaturesConfig)
 {
-    pFeaturesConfig.mFeatures = pJson["Features"].get<FeaturesConfig::Features>();
+    pFeaturesConfig.mFeatures = pJson["features"].get<FeaturesConfig::Features>();
 }
 
 static void to_json(json& pJson, const FeaturesConfig::Features& pFeatures)
 {
-    pJson["Structures"] = pFeatures.mStructures;
+    pJson["structures"] = pFeatures.mStructures;
 }
 static void from_json(const json& pJson, FeaturesConfig::Features& pFeatures)
 {
-    pFeatures.mStructures = pJson["Structures"].get<FeaturesConfig::Features::Structures>();
+    pFeatures.mStructures = pJson["structures"].get<FeaturesConfig::Features::Structures>();
 }
 
 static void to_json(json& pJson, const FeaturesStructures& pStructures)
 {
-    pJson["Village"] = pStructures.mVillage;
+    pJson["village"] = pStructures.mVillage;
 }
 static void from_json(const json& pJson, FeaturesStructures& pStructures)
 {
-    pStructures.mVillage = pJson["Village"].get<FeaturesStructures::Village>();
+    pStructures.mVillage = pJson["village"].get<FeaturesStructures::Village>();
 }
 
 static void to_json(json& pJson, const FeaturesStructures::Village& pVillage)
 {
-    pJson["Spawn"]                  = pVillage.mSpawn;
-    pJson["Enable"]                 = pVillage.mEnable;
-    pJson["TownSpacing"]            = pVillage.mTownSpacing;
-    pJson["MinTownSeparation"]      = pVillage.mMinTownSeparation;
-    pJson["SpecifiedChunkPosition"] = pVillage.mSpecifiedChunkPosition;
+    pJson["spawn"]                    = pVillage.mSpawn;
+    pJson["enable"]                   = pVillage.mEnable;
+    pJson["town_spacing"]             = pVillage.mTownSpacing;
+    pJson["min_town_separation"]      = pVillage.mMinTownSeparation;
+    pJson["specified_chunk_position"] = pVillage.mSpecifiedChunk;
 }
 static void from_json(const json& pJson, FeaturesStructures::Village& pVillage)
 {
-    pVillage.mSpawn             = pJson["Spawn"].get<bool>();
-    pVillage.mEnable            = pJson["Enable"].get<bool>();
-    pVillage.mTownSpacing       = pJson["TownSpacing"].get<uint>();
-    pVillage.mMinTownSeparation = pJson["MinTownSeparation"].get<uint>();
-    pVillage.mSpecifiedChunkPosition =
-        pJson["SpecifiedChunkPosition"].get<std::vector<VillageSpecifiedChunkPosition>>();
+    pVillage.mSpawn             = pJson["spawn"].get<bool>();
+    pVillage.mEnable            = pJson["enable"].get<bool>();
+    pVillage.mTownSpacing       = pJson["town_spacing"].get<uint>();
+    pVillage.mMinTownSeparation = pJson["min_town_separation"].get<uint>();
+    pVillage.mSpecifiedChunk    = pJson["specified_chunk_position"].get<std::vector<VillageSpecifiedChunk>>();
 }
 
-static void to_json(json& pJson, const VillageSpecifiedChunkPosition& pSpecifiedChunkPosition)
+static void to_json(json& pJson, const VillageSpecifiedChunk& pSpecifiedChunkPosition)
 {
-    pJson["Enable"]   = pSpecifiedChunkPosition.mEnable;
-    pJson["Spawn"]    = pSpecifiedChunkPosition.mSpawn;
-    pJson["Position"] = pSpecifiedChunkPosition.mPosition;
+    pJson["enable"]   = pSpecifiedChunkPosition.mEnable;
+    pJson["spawn"]    = pSpecifiedChunkPosition.mSpawn;
+    pJson["position"] = pSpecifiedChunkPosition.mPosition;
 }
-static void from_json(const json& pJson, VillageSpecifiedChunkPosition& pSpecifiedChunkPosition)
+static void from_json(const json& pJson, VillageSpecifiedChunk& pSpecifiedChunkPosition)
 {
-    pSpecifiedChunkPosition.mEnable   = pJson["Enable"].get<bool>();
-    pSpecifiedChunkPosition.mSpawn    = pJson["Spawn"].get<bool>();
-    pSpecifiedChunkPosition.mPosition = pJson["Position"].get<ChunkPos>();
+    pSpecifiedChunkPosition.mEnable   = pJson["enable"].get<bool>();
+    pSpecifiedChunkPosition.mSpawn    = pJson["spawn"].get<bool>();
+    pSpecifiedChunkPosition.mPosition = pJson["position"].get<ChunkPos>();
 }
 
 static void to_json(json& pJson, const ChunkPos& pChunkPos) { pJson = { pChunkPos.x, pChunkPos.z }; }
