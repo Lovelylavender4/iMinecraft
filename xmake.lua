@@ -20,7 +20,7 @@ if not has_config("vs_runtime") then
     set_runtimes("MD")
 end
 
-target("Minecraft")
+target("iMinecraft")
     add_cxflags(
         "/EHa",
         "/utf-8",
