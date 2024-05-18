@@ -39,7 +39,9 @@ LL_TYPE_INSTANCE_HOOK(
                 if (!specifiedChunk.mEnable) { continue; }
                 if (specifiedChunk.mPosition == pChunkPos)
                 {
-                    if (MINECRAFT_DEBUG) { SelfLogger.info(""); }
+#ifdef MINECRAFT_DEBUG
+                    SelfLogger.info("");
+#endif
                     return specifiedChunk.mSpawn;
                 }
             }
