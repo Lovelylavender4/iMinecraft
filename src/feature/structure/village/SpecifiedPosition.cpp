@@ -40,7 +40,7 @@ LL_TYPE_INSTANCE_HOOK(
                 if (specifiedChunk.mPosition == pChunkPos)
                 {
 #ifdef MINECRAFT_DEBUG
-                    SelfLogger.info("");
+                    SelfLogger.note("{}", nlohmann::json(specifiedChunk).dump(4));
 #endif
                     return specifiedChunk.mSpawn;
                 }

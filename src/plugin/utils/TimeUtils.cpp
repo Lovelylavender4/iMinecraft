@@ -6,14 +6,15 @@ iMinecraft::TimeUtils::time_s iMinecraft::TimeUtils::getTimeNowStructure()
     std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
     std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-    std::tm*    now_tm     = std::localtime(&now_time_t);
-    time.years             = now_tm->tm_year + 1900;
-    time.months            = now_tm->tm_mon + 1;
-    time.days              = now_tm->tm_mday;
-    time.weeks             = now_tm->tm_wday + 1;
-    time.hours             = now_tm->tm_hour;
-    time.minutes           = now_tm->tm_min;
-    time.seconds           = now_tm->tm_sec;
+    std::tm*    now_tm     = new std::tm;
+    localtime_s(now_tm, &now_time_t);
+    time.years   = now_tm->tm_year + 1900;
+    time.months  = now_tm->tm_mon + 1;
+    time.days    = now_tm->tm_mday;
+    time.weeks   = now_tm->tm_wday + 1;
+    time.hours   = now_tm->tm_hour;
+    time.minutes = now_tm->tm_min;
+    time.seconds = now_tm->tm_sec;
 
     time.yday  = now_tm->tm_yday;
     time.isdst = now_tm->tm_isdst;
@@ -29,6 +30,8 @@ iMinecraft::TimeUtils::time_s iMinecraft::TimeUtils::getTimeNowStructure()
     time.milliseconds = ms.count();
     time.microseconds = cs.count() % 1000;
     time.nanoseconds  = ns.count() % 1000;
+
+    delete now_tm;
     return time;
 }
 
