@@ -2,7 +2,7 @@
 #include "ll/api/memory/Hook.h"
 #include "mc/world/level/levelgen/structure/VillageFeature.h"
 
-void Minecraft::MinecraftVillage::process()
+void iMinecraft::MinecraftVillage::process()
 {
     townSpacingProcess();
     specifiedPositionProcess();

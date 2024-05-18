@@ -1,11 +1,12 @@
 #pragma once
 
 #include "ll/api/plugin/NativePlugin.h"
+#include "plugin/logger/Logger.h"
 
-namespace Minecraft
+namespace iMinecraft
 {
 
-class MinecraftPlugin
+class iMinecraftPlugin
 {
     using NativePlugin = ll::plugin::NativePlugin;
 
@@ -13,10 +14,12 @@ private:
     NativePlugin& mSelf;
 
 public:
-    MinecraftPlugin(ll::plugin::NativePlugin& pSelf);
+    iMinecraftPlugin(ll::plugin::NativePlugin& pSelf);
 
 public:
-    static MinecraftPlugin& getInstance();
+    static iMinecraftPlugin& getInstance();
+
+    static iLogger& getLogger();
 
 public:
     [[nodiscard]] ll::plugin::NativePlugin& getSelf() const { return mSelf; }
@@ -26,6 +29,6 @@ public:
     bool enable();
 
     bool disable();
-}; // class MinecraftPlugin
+}; // class iMinecraftPlugin
 
-} // namespace Minecraft
+} // namespace iMinecraft

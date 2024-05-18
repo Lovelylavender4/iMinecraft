@@ -1,9 +1,9 @@
 {
     "format_version": 2,
-    "tooth": "github.com/Lovelylavender4/Minecraft",
+    "tooth": "github.com/Lovelylavender4/iMinecraft",
     "version": "0.0.0",
     "info": {
-        "name": "Minecraft",
+        "name": "iMinecraft",
         "description": "A Minecraft BDS Plugin for Modifying Features and World-Related Generation.",
         "author": "Lovelylavender4",
         "tags": [
@@ -18,8 +18,8 @@
     "files": {
         "place": [
             {
-                "src": "Minecraft/*",
-                "dest": "plugins/Minecraft/"
+                "src": "iMinecraft/*",
+                "dest": "plugins/iMinecraft/"
             }
         ]
     }

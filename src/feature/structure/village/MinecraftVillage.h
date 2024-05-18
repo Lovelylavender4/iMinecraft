@@ -1,7 +1,8 @@
 #pragma once
 
+#include "plugin/Family.h"
 
-namespace Minecraft
+namespace iMinecraft
 {
 
 class MinecraftVillage
@@ -14,4 +15,4 @@ private:
     static void specifiedPositionProcess();
 }; // class MinecraftVillage
 
-} // namespace Minecraft
+} // namespace iMinecraft

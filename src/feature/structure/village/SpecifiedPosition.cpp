@@ -6,8 +6,10 @@
 #include "mc/world/level/levelgen/v1/BiomeSource.h"
 #include "mc/world/level/levelgen/v1/IPreliminarySurfaceProvider.h"
 #include "plugin/config/ConfigManager.h"
+#include "plugin/iMinecraft.h"
 
-using ConfigManager = Minecraft::ConfigManager;
+
+using ConfigManager = iMinecraft::ConfigManager;
 using uint          = MiracleForest::uint;
 
 LL_TYPE_INSTANCE_HOOK(
@@ -35,11 +37,15 @@ LL_TYPE_INSTANCE_HOOK(
             for (auto& specifiedChunk : villageConfig.mSpecifiedChunk)
             {
                 if (!specifiedChunk.mEnable) { continue; }
-                if (specifiedChunk.mPosition == pChunkPos) { return specifiedChunk.mSpawn; }
+                if (specifiedChunk.mPosition == pChunkPos)
+                {
+                    if (MINECRAFT_DEBUG) { SelfLogger.info(""); }
+                    return specifiedChunk.mSpawn;
+                }
             }
         }
     }
     return r;
 }
 
-void Minecraft::MinecraftVillage::specifiedPositionProcess() { MinecraftVillageHook::hook(); }
+void iMinecraft::MinecraftVillage::specifiedPositionProcess() { MinecraftVillageHook::hook(); }

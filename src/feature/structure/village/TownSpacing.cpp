@@ -3,7 +3,7 @@
 #include "mc/world/level/levelgen/structure/VillageFeature.h"
 #include "plugin/config/ConfigManager.h"
 
-using ConfigManager = Minecraft::ConfigManager;
+using ConfigManager = iMinecraft::ConfigManager;
 
 LL_TYPE_INSTANCE_HOOK(
     MinecraftVillageHook,
@@ -28,4 +28,4 @@ LL_TYPE_INSTANCE_HOOK(
     return origin(pSeed, pTownSpacing, pMinTownSeparation);
 }
 
-void Minecraft::MinecraftVillage::townSpacingProcess() { MinecraftVillageHook::hook(); }
+void iMinecraft::MinecraftVillage::townSpacingProcess() { MinecraftVillageHook::hook(); }

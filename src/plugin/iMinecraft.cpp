@@ -1,23 +1,29 @@
-#include "plugin/Minecraft.h"
+#include "plugin/iMinecraft.h"
 #include "feature/structure/village/MinecraftVillage.h"
 #include "ll/api/plugin/NativePlugin.h"
 #include "ll/api/plugin/RegisterHelper.h"
 #include "plugin/config/ConfigManager.h"
 #include <memory>
 
-namespace Minecraft
+namespace iMinecraft
 {
 
-static std::unique_ptr<MinecraftPlugin> instance;
+static std::unique_ptr<iMinecraftPlugin> instance;
 
-MinecraftPlugin& MinecraftPlugin::getInstance() { return *instance; }
+iMinecraftPlugin& iMinecraftPlugin::getInstance() { return *instance; }
 
-MinecraftPlugin::MinecraftPlugin(ll::plugin::NativePlugin& pSelf)
+iLogger& iMinecraftPlugin::getLogger()
+{
+    static iMinecraft::iLogger logger("iMinecraft");
+    return logger;
+}
+
+iMinecraftPlugin::iMinecraftPlugin(ll::plugin::NativePlugin& pSelf)
     : mSelf(pSelf)
 {
 }
 
-bool MinecraftPlugin::load()
+bool iMinecraftPlugin::load()
 {
     getSelf().getLogger().info("Loading config...");
     if (!ConfigManager::instance().load())
@@ -29,7 +35,7 @@ bool MinecraftPlugin::load()
     return true;
 }
 
-bool MinecraftPlugin::enable()
+bool iMinecraftPlugin::enable()
 {
     getSelf().getLogger().info("Starting...");
     MinecraftVillage::process();
@@ -37,7 +43,7 @@ bool MinecraftPlugin::enable()
     return true;
 }
 
-bool MinecraftPlugin::disable()
+bool iMinecraftPlugin::disable()
 {
     getSelf().getLogger().info("Saving config...");
     ConfigManager::instance().save();
@@ -45,6 +51,6 @@ bool MinecraftPlugin::disable()
     return true;
 }
 
-} // namespace Minecraft
+} // namespace iMinecraft
 
-LL_REGISTER_PLUGIN(Minecraft::MinecraftPlugin, Minecraft::instance);
+LL_REGISTER_PLUGIN(iMinecraft::iMinecraftPlugin, iMinecraft::instance);

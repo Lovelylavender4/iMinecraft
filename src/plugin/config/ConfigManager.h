@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace Minecraft
+namespace iMinecraft
 {
 using namespace MiracleForest;
 
@@ -75,12 +75,12 @@ private:
     bool createFeaturesConfigFile();
 }; // class ConfigManager
 
-} // namespace Minecraft
+} // namespace iMinecraft
 
 namespace nlohmann
 {
-using OverallConfig         = Minecraft::ConfigManager::OverallConfig;
-using FeaturesConfig        = Minecraft::ConfigManager::FeaturesConfig;
+using OverallConfig         = iMinecraft::ConfigManager::OverallConfig;
+using FeaturesConfig        = iMinecraft::ConfigManager::FeaturesConfig;
 using FeaturesStructures    = FeaturesConfig::Features::Structures;
 using VillageSpecifiedChunk = FeaturesConfig::Features::Structures::Village::SpecifiedChunk;
 

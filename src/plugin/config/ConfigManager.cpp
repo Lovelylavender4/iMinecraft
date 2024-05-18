@@ -1,10 +1,10 @@
 #include "plugin/config/ConfigManager.h"
 #include "plugin/Family.h"
-#include "plugin/Minecraft.h"
+#include "plugin/iMinecraft.h"
 #include <filesystem>
 #include <fstream>
 
-namespace Minecraft
+namespace iMinecraft
 {
 using json = nlohmann::json;
 
@@ -17,19 +17,19 @@ bool ConfigManager::load()
 {
     if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfigFilePath))
     {
-        MinecraftPlugin::getInstance().getSelf().getLogger().warn(
+        iMinecraftPlugin::getInstance().getSelf().getLogger().warn(
             "Unable to find configuration file: {}, ready to create this configuration!",
             mOverallConfigFilePath
         );
         if (!createOverallConfigFile())
         {
-            MinecraftPlugin::getInstance().getSelf().getLogger().error(
+            iMinecraftPlugin::getInstance().getSelf().getLogger().error(
                 "Failed to create configuration file: {}",
                 PLUGIN_WORK_DIR + mOverallConfigFilePath
             );
             return false;
         }
-        MinecraftPlugin::getInstance().getSelf().getLogger().info(
+        iMinecraftPlugin::getInstance().getSelf().getLogger().info(
             "Successfully created configuration file: {}",
             mOverallConfigFilePath
         );
@@ -44,19 +44,19 @@ bool ConfigManager::load()
     }
     if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig))
     {
-        MinecraftPlugin::getInstance().getSelf().getLogger().warn(
+        iMinecraftPlugin::getInstance().getSelf().getLogger().warn(
             "Unable to find configuration file: {}, ready to create this configuration!",
             mOverallConfig.mPath.mFeaturesConfig
         );
         if (!createFeaturesConfigFile())
         {
-            MinecraftPlugin::getInstance().getSelf().getLogger().error(
+            iMinecraftPlugin::getInstance().getSelf().getLogger().error(
                 "Failed to create configuration file: {}",
                 mOverallConfig.mPath.mFeaturesConfig
             );
             return false;
         }
-        MinecraftPlugin::getInstance().getSelf().getLogger().info(
+        iMinecraftPlugin::getInstance().getSelf().getLogger().info(
             "Successfully created configuration file: {}",
             mOverallConfig.mPath.mFeaturesConfig
         );
@@ -123,7 +123,7 @@ ConfigManager& ConfigManager::instance()
     return configManagerInstance;
 }
 
-} // namespace Minecraft
+} // namespace iMinecraft
 
 namespace nlohmann
 {
@@ -149,7 +149,7 @@ static void to_json(json& pJson, const OverallConfig& pOverallConfig)
 }
 static void from_json(const json& pJson, OverallConfig& pOverallConfig)
 {
-    pOverallConfig.mFormatVersion = pJson["format_version"].get<Minecraft::uint>();
+    pOverallConfig.mFormatVersion = pJson["format_version"].get<iMinecraft::uint>();
     pOverallConfig.mEnable        = pJson["enable"].get<bool>();
     pOverallConfig.mDebug         = pJson["debug"].get<bool>();
     pOverallConfig.mEnableLog     = pJson["enable_log"].get<bool>();
