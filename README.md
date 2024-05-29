@@ -6,6 +6,8 @@
 
 `Minecraft` is a Minecraft BDS plugin for modifying features and world generation related content.
 
+TIP: The author is in school and may only have a day or two to write and commit code every half month or so!
+
 ## Install
 
 ## Usage
