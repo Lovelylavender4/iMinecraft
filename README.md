@@ -79,6 +79,43 @@ The `features.json` file will be used for configuring world generation and relat
 
 Its counterpart is explained as:
 
+```json
+{
+    // Configuration of feature-related.
+    "features": {
+        // Configuration of structure-related features.
+        "structures": {
+            // The configuration of features related to villages.
+            "village": {
+                // Is this sub-configuration allowed?
+                "enable": /* 'true' or 'false' */,
+                // The setting of minimum town spacing,
+                // with -1 indicating the use of the original default spacing.
+                "min_town_separation": /* '-1' or integer */,
+                // If set to false, village generation will be disabled.
+                "spawn": /* 'true' or 'false' */,
+                // Operating configuration at a specific chunk coordinate.
+                "specified_chunk_position": [
+                    /** Example.
+                    {
+                        // Whether to generate a village at this coordinate.
+                        "spawn": 'true' or 'false',
+                        // Is this sub-configuration allowed?
+                        "enable": 'true' or 'false',
+                        // chunk coordinate.
+                        "position": [ 'integer', 'integer' ]
+                    }
+                    */
+                ],
+                // The setting of town spacing,
+                // with -1 indicating the use of the original default spacing.
+                "town_spacing": /* '-1' or integer */
+            }
+        }
+    }
+}
+```
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Lovelylavender4/Minecraft&type=Date)](https://star-history.com/#Lovelylavender4/Minecraft&Date)
