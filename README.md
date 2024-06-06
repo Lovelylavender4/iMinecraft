@@ -37,7 +37,7 @@ The default content of `config.json` is as follows:
 
 Its counterpart is explained as:
 
-```json
+```jsonc
 {
     // If true, debug mode is enabled.
     "debug": /* 'true' or 'false' */,
@@ -79,7 +79,7 @@ The `features.json` file will be used for configuring world generation and relat
 
 Its counterpart is explained as:
 
-```json
+```jsonc
 {
     // Configuration of feature-related.
     "features": {
