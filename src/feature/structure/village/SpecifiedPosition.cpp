@@ -39,9 +39,9 @@ LL_TYPE_INSTANCE_HOOK(
                 if (!specifiedChunk.mEnable) { continue; }
                 if (specifiedChunk.mPosition == pChunkPos)
                 {
-#ifdef iiMINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
                     SelfLogger.note("SpecifiedChunk: {}", nlohmann::json(specifiedChunk).dump(4));
-#endif //^^^^ iiMINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
                     return specifiedChunk.mSpawn;
                 }
             }
@@ -53,7 +53,7 @@ LL_TYPE_INSTANCE_HOOK(
 void iMinecraft::MinecraftVillage::specifiedPositionProcess()
 {
     MinecraftVillageIsFeatureChunkHook::hook();
-#ifdef iiMINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
     SelfLogger.info("MinecraftVillageIsFeatureChunkHook hooked.");
-#endif //^^^^ iiMINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
 }

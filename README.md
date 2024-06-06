@@ -59,7 +59,8 @@ Its counterpart is explained as:
 
 #### FeaturesConfig
 
-The `features.json` file will be used for configuring world generation and related aspects such as terrain features. The default content of `features.json` is as follows:
+The `features.json` file will be used for configuring world generation and related aspects such as terrain features.
+The default content of `features.json` is as follows:
 
 ```json
 {
