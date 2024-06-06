@@ -18,13 +18,13 @@ LL_TYPE_INSTANCE_HOOK(
 )
 {
     auto& villageConfig = ConfigManager::instance().mFeaturesConfig.mFeatures.mStructures.mVillage;
-#ifdef MINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
     SelfLogger.info("MinecraftVillageCtorHook called");
-#endif //^^^^ MINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
 
     if (villageConfig.mEnable)
     {
-#ifdef MINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
         SelfLogger.info(
             // o means original value
             "with {{Seed={}, TownSpacing={}(o:{}), "
@@ -36,7 +36,7 @@ LL_TYPE_INSTANCE_HOOK(
             (villageConfig.mMinTownSeparation == -1) ? pMinTownSeparation : villageConfig.mMinTownSeparation,
             pMinTownSeparation
         );
-#endif //^^^^ MINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
         if (villageConfig.mTownSpacing < villageConfig.mMinTownSeparation)
         {
             SelfLogger.error(
@@ -53,16 +53,16 @@ LL_TYPE_INSTANCE_HOOK(
             (villageConfig.mMinTownSeparation == -1) ? pMinTownSeparation : villageConfig.mMinTownSeparation
         );
     }
-#ifdef MINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
     else { SelfLogger.info("VillageConfig disabled."); }
-#endif //^^^^ MINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
     return origin(pSeed, pTownSpacing, pMinTownSeparation);
 }
 
 void iMinecraft::MinecraftVillage::townSpacingProcess()
 {
     MinecraftVillageCtorHook::hook();
-#ifdef MINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
     SelfLogger.info("MinecraftVillageCtorHook hooked.");
-#endif //^^^^ MINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
 }

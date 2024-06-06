@@ -50,7 +50,7 @@ target("iMinecraft")
     set_symbols("debug")
 
     if is_mode("debug") then
-        add_defines("MINECRAFT_DEBUG")
+        add_defines("iMINECRAFT_DEBUG")
     end
     
     after_build(function (target)

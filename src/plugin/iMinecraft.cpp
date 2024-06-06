@@ -25,9 +25,9 @@ iMinecraftPlugin::iMinecraftPlugin(ll::plugin::NativePlugin& pSelf)
 
 bool iMinecraftPlugin::load()
 {
-#ifdef MINECRAFT_DEBUG
+#ifdef iMINECRAFT_DEBUG
     SelfLogger.warn("Debug mode has been enabled for iMinecraft!");
-#endif //^^^^ MINECRAFT_DEBUG ^^^^
+#endif //^^^^ iMINECRAFT_DEBUG ^^^^
     SelfLogger.info("Loading config...");
     if (!ConfigManager::instance().load())
     {
