@@ -17,22 +17,19 @@ bool ConfigManager::load()
 {
     if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfigFilePath))
     {
-        iMinecraftPlugin::getInstance().getSelf().getLogger().warn(
+        SelfLogger.warn(
             "Unable to find configuration file: {}, ready to create this configuration!",
             mOverallConfigFilePath
         );
         if (!createOverallConfigFile())
         {
-            iMinecraftPlugin::getInstance().getSelf().getLogger().error(
+            SelfLogger.fatal(
                 "Failed to create configuration file: {}",
                 PLUGIN_WORK_DIR + mOverallConfigFilePath
             );
             return false;
         }
-        iMinecraftPlugin::getInstance().getSelf().getLogger().info(
-            "Successfully created configuration file: {}",
-            mOverallConfigFilePath
-        );
+        SelfLogger.info("Successfully created configuration file: {}", mOverallConfigFilePath);
     }
     else
     {
@@ -44,22 +41,16 @@ bool ConfigManager::load()
     }
     if (!std::filesystem::exists(PLUGIN_WORK_DIR + mOverallConfig.mPath.mFeaturesConfig))
     {
-        iMinecraftPlugin::getInstance().getSelf().getLogger().warn(
+        SelfLogger.warn(
             "Unable to find configuration file: {}, ready to create this configuration!",
             mOverallConfig.mPath.mFeaturesConfig
         );
         if (!createFeaturesConfigFile())
         {
-            iMinecraftPlugin::getInstance().getSelf().getLogger().error(
-                "Failed to create configuration file: {}",
-                mOverallConfig.mPath.mFeaturesConfig
-            );
+            SelfLogger.fatal("Failed to create configuration file: {}", mOverallConfig.mPath.mFeaturesConfig);
             return false;
         }
-        iMinecraftPlugin::getInstance().getSelf().getLogger().info(
-            "Successfully created configuration file: {}",
-            mOverallConfig.mPath.mFeaturesConfig
-        );
+        SelfLogger.info("Successfully created configuration file: {}", mOverallConfig.mPath.mFeaturesConfig);
     }
     else
     {

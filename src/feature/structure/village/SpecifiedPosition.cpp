@@ -13,7 +13,7 @@ using ConfigManager = iMinecraft::ConfigManager;
 using uint          = MiracleForest::uint;
 
 LL_TYPE_INSTANCE_HOOK(
-    MinecraftVillageHook,
+    MinecraftVillageIsFeatureChunkHook,
     ll::memory::HookPriority::Normal,
     VillageFeature,
     "?isFeatureChunk@VillageFeature@@UEAA_NAEBVBiomeSource@@AEAVRandom@@AEBVChunkPos@@"
@@ -40,8 +40,8 @@ LL_TYPE_INSTANCE_HOOK(
                 if (specifiedChunk.mPosition == pChunkPos)
                 {
 #ifdef MINECRAFT_DEBUG
-                    SelfLogger.note("{}", nlohmann::json(specifiedChunk).dump(4));
-#endif
+                    SelfLogger.note("SpecifiedChunk: {}", nlohmann::json(specifiedChunk).dump(4));
+#endif //^^^^ MINECRAFT_DEBUG ^^^^
                     return specifiedChunk.mSpawn;
                 }
             }
@@ -50,4 +50,10 @@ LL_TYPE_INSTANCE_HOOK(
     return r;
 }
 
-void iMinecraft::MinecraftVillage::specifiedPositionProcess() { MinecraftVillageHook::hook(); }
+void iMinecraft::MinecraftVillage::specifiedPositionProcess()
+{
+    MinecraftVillageIsFeatureChunkHook::hook();
+#ifdef MINECRAFT_DEBUG
+    SelfLogger.info("MinecraftVillageIsFeatureChunkHook hooked.");
+#endif //^^^^ MINECRAFT_DEBUG ^^^^
+}

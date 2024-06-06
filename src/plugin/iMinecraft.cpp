@@ -25,29 +25,32 @@ iMinecraftPlugin::iMinecraftPlugin(ll::plugin::NativePlugin& pSelf)
 
 bool iMinecraftPlugin::load()
 {
-    getSelf().getLogger().info("Loading config...");
+#ifdef MINECRAFT_DEBUG
+    SelfLogger.warn("Debug mode has been enabled for iMinecraft!");
+#endif //^^^^ MINECRAFT_DEBUG ^^^^
+    SelfLogger.info("Loading config...");
     if (!ConfigManager::instance().load())
     {
-        getSelf().getLogger().error("Failed to load config.");
+        SelfLogger.error("Failed to load config.");
         return false;
     }
-    getSelf().getLogger().info("Done.");
+    SelfLogger.info("Done.");
     return true;
 }
 
 bool iMinecraftPlugin::enable()
 {
-    getSelf().getLogger().info("Starting...");
+    SelfLogger.info("Starting...");
     MinecraftVillage::process();
-    getSelf().getLogger().info("Done.");
+    SelfLogger.info("Done.");
     return true;
 }
 
 bool iMinecraftPlugin::disable()
 {
-    getSelf().getLogger().info("Saving config...");
+    SelfLogger.info("Saving config...");
     ConfigManager::instance().save();
-    getSelf().getLogger().info("Done.");
+    SelfLogger.info("Done.");
     return true;
 }
 
