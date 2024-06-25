@@ -13,7 +13,7 @@
     },
     "asset_url": "My Asset Url",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "0.12.x"
+        "github.com/LiteLDev/LeviLamina": "0.13.x"
     },
     "files": {
         "place": [

@@ -6,7 +6,7 @@ add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
 add_repositories("MiF-repo https://github.com/MiracleForest/xmake-repo.git")
 
 -- Dependencies from xmake-repo.
-add_requires("fmt")
+-- add_requires("fmt")
 add_requires("magic_enum")
 add_requires("nlohmann_json")
 
@@ -38,7 +38,7 @@ target("iMinecraft")
     add_includedirs("src")
     add_packages(
 		"levilamina",
-		"fmt",
+-- 		"fmt",
         "magic_enum",
         "nlohmann_json",
         "iFamily"
