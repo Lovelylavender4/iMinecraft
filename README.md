@@ -37,7 +37,7 @@ The default content of `config.json` is as follows:
 
 Its counterpart is explained as:
 
-```json
+```jsonc
 {
     // If true, debug mode is enabled.
     "debug": /* 'true' or 'false' */,
@@ -80,7 +80,7 @@ The default content of `features.json` is as follows:
 
 Its counterpart is explained as:
 
-```json
+```jsonc
 {
     // Configuration of feature-related.
     "features": {
