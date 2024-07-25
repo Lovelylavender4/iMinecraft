@@ -1,7 +1,7 @@
 #include "plugin/iMinecraft.h"
 #include "feature/structure/village/MinecraftVillage.h"
-#include "ll/api/plugin/NativePlugin.h"
-#include "ll/api/plugin/RegisterHelper.h"
+#include "ll/api/mod/NativeMod.h"
+#include "ll/api/mod/RegisterHelper.h"
 #include "plugin/config/ConfigManager.h"
 #include <memory>
 
@@ -18,7 +18,7 @@ iLogger& iMinecraftPlugin::getLogger()
     return logger;
 }
 
-iMinecraftPlugin::iMinecraftPlugin(ll::plugin::NativePlugin& pSelf)
+iMinecraftPlugin::iMinecraftPlugin(ll::mod::NativeMod& pSelf)
     : mSelf(pSelf)
 {
 }
@@ -56,4 +56,4 @@ bool iMinecraftPlugin::disable()
 
 } // namespace iMinecraft
 
-LL_REGISTER_PLUGIN(iMinecraft::iMinecraftPlugin, iMinecraft::instance);
+LL_REGISTER_MOD(iMinecraft::iMinecraftPlugin, iMinecraft::instance);
