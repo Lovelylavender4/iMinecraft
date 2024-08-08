@@ -119,7 +119,7 @@ Its counterpart is explained as:
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Lovelylavender4/Minecraft&type=Date)](https://star-history.com/#Lovelylavender4/Minecraft&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Lovelylavender4/iMinecraft&type=Date)](https://star-history.com/#Lovelylavender4/iMinecraft&Date)
 
 ## ⭐Contributing⭐
 
